@@ -19,10 +19,12 @@ class _MyAppState extends State<MyApp> {
 
   @override
   void initState() {
-    super.initState();
-    requestPermissions;
-    initVideo();
-  }
+  super.initState();
+  Future.microtask(() async {
+    await requestPermissions();
+    await initVideo();
+  });
+}
 
   Future<void> initVideo() async {
     final client = StreamVideo(
